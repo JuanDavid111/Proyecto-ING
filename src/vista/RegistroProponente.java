@@ -4,8 +4,8 @@
  */
 package vista;
 
-
-
+import controlador.BD_Control;
+import modelo.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
@@ -45,8 +45,9 @@ public class RegistroProponente extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -72,6 +73,8 @@ public class RegistroProponente extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         juridicoButton = new javax.swing.JToggleButton();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        jToggleButton2 = new javax.swing.JToggleButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -90,35 +93,41 @@ public class RegistroProponente extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(217, 217, 217));
         jPanel2.setPreferredSize(new java.awt.Dimension(1280, 100));
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI Historic", 1, 36)); // NOI18N
-        jLabel12.setText("Login | Register");
+        jButton4.setBackground(new java.awt.Color(217, 217, 217));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/Img/curseate-logo.png"))); // NOI18N
+        jButton4.setText("jButton3");
 
-        jLabel14.setFont(new java.awt.Font("Gabriola", 1, 36)); // NOI18N
-        jLabel14.setText("Curseate");
+        jLabel24.setFont(new java.awt.Font("Monotype Corsiva", 1, 48)); // NOI18N
+        jLabel24.setText("Curseate ");
+
+        jLabel25.setFont(new java.awt.Font("Monotype Corsiva", 1, 32)); // NOI18N
+        jLabel25.setText("Login | Register");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jLabel14)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 786, Short.MAX_VALUE)
-                .addComponent(jLabel12)
-                .addGap(75, 75, 75))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(3, 3, 3)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 732, Short.MAX_VALUE)
+                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 32, Short.MAX_VALUE)
-                        .addComponent(jLabel14))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel12)
-                        .addGap(14, 14, 14)))
-                .addContainerGap())
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel25)
+                            .addComponent(jLabel24))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(217, 217, 217));
@@ -262,6 +271,22 @@ public class RegistroProponente extends javax.swing.JFrame {
             }
         });
 
+        jToggleButton1.setBackground(new java.awt.Color(217, 217, 217));
+        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/Img/eye icon.png"))); // NOI18N
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+
+        jToggleButton2.setBackground(new java.awt.Color(217, 217, 217));
+        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/Img/eye icon.png"))); // NOI18N
+        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -303,14 +328,20 @@ public class RegistroProponente extends javax.swing.JFrame {
                         .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(atrasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(95, 95, 95)
+                        .addComponent(enviarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(72, 72, 72)
-                                .addComponent(atrasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(95, 95, 95)
-                                .addComponent(enviarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jToggleButton2)
+                                .addGap(127, 127, 127)
+                                .addComponent(juridicoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(95, 95, 95)
+                                .addComponent(jToggleButton1)
+                                .addGap(58, 58, 58)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addComponent(jLabel10)
@@ -325,12 +356,8 @@ public class RegistroProponente extends javax.swing.JFrame {
                                             .addComponent(resumenField, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(tituloField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(0, 0, Short.MAX_VALUE)))
-                                .addGap(29, 29, 29)))
-                        .addContainerGap(11, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(164, 164, 164)
-                        .addComponent(juridicoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(29, 29, 29)))))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -351,13 +378,17 @@ public class RegistroProponente extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(userField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel3)
+                                .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(confirmField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel4)
+                                .addComponent(confirmField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
@@ -371,21 +402,19 @@ public class RegistroProponente extends javax.swing.JFrame {
                             .addComponent(jLabel7)
                             .addComponent(islrField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel9))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(resumenField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(tituloField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(resumenField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(tituloField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(juridicoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
-                            .addComponent(mercantilField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(mercantilField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel9)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(enviarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -424,38 +453,72 @@ public class RegistroProponente extends javax.swing.JFrame {
     }//GEN-LAST:event_userFieldActionPerformed
 
     private void enviarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarButtonActionPerformed
+        
         if(evt.getSource() == enviarButton){
-            String password1 = passwordField.getText();
-            String password2 = confirmField.getText();
+    //Almacena las contraseñas en una variable para que se puedean comparar
+    String password1 = passwordField.getText(); // password
+    String password2 = confirmField.getText(); // confirm password
 
-            if(password1.equals(password2)){
-                if(!"".equals(userField.getText()) && !"".equals(rifField.getText()) && !"".equals(islrField.getText()) && !"".equals(ciField.getText()) && !"".equals(tituloField.getText()) && !"".equals(resumenField.getText())){
-                    if(juridicoButton.isSelected() && !"".equals(mercantilField.getText())){
-                        JOptionPane.showMessageDialog(this,"Registro exitoso");
-                        this.setVisible(false);
-                        UI_Login frame_a_pasar = new UI_Login();
-                        frame_a_pasar.setVisible(true);
-                    }
-                    else if(juridicoButton.isSelected() && "".equals(mercantilField.getText())){
-                        JOptionPane.showMessageDialog(this, "Datos Faltante");
-                    }
 
-                    else if(!juridicoButton.isSelected()){
-                        JOptionPane.showMessageDialog(this,"Registro exitoso");
-                        this.setVisible(false);
-                        UI_Login frame_a_pasar = new UI_Login();
-                        frame_a_pasar.setVisible(true);
-                    }
-                } else{
-                    JOptionPane.showMessageDialog(this, "Datos Faltante");
-                }
-
+    //Preguntta si son iguales las contraseñas
+    if(password1.equals(password2)){
+        //Si son iguales pasa a ver si los demas JField no estan vacios
+        if(!"".equals(userField.getText()) && !"".equals(rifField.getText()) && !"".equals(islrField.getText()) && !"".equals(ciField.getText()) && !"".equals(tituloField.getText()) && !"".equals(resumenField.getText())){
+            
+            //Pregunta si el boton de juridico esta presionado y si esta precionado y tiene algo en el JField de mercantil pues registro exitoso
+            if(juridicoButton.isSelected() && !"".equals(mercantilField.getText())){
+                //FGAFASFASFAF//
+                //FASFASFASFFSAF//
+                Proponente newProponent = new Proponente(userField.getText(),passwordField.getText(),islrField.getText(),ciField.getText(),tituloField.getText(),resumenField.getText(),mercantilField.getText());
+                Registrar_Proponente(newProponent);
+                JOptionPane.showMessageDialog(this,"Registro exitoso");
+                this.setVisible(false);
+                //Crea un nuevo Login Frame(Si pueden cambiar esta logica para que no se creen muchas instancias)
+                UI_Login frame_a_pasar = new UI_Login();
+                frame_a_pasar.setVisible(true);
             }
-            if(!password1.equals(password2)){
-                JOptionPane.showMessageDialog(this, "Password incorrect");
+            //Si el boton para el pase de juridico esta presionado y no hay nada escrito
+            else if(juridicoButton.isSelected() && "".equals(mercantilField.getText())){
+                //Erro, Datos faltantes
+                JOptionPane.showMessageDialog(this, "Datos Faltante");
             }
-
+            //Si el boton NO esta presionado pues registro exitoso
+            else if(!juridicoButton.isSelected()){
+                
+                //FGAFASFASFAF//
+                Proponente newProponent = new Proponente(userField.getText(),passwordField.getText(),islrField.getText(),ciField.getText(),tituloField.getText(),resumenField.getText(),mercantilField.getText());
+                Registrar_Proponente(newProponent);
+                JOptionPane.showMessageDialog(this,"Registro exitoso");
+                this.setVisible(false);
+                //Crea un nuevo Login Frame(Si pueden cambiar esta logica para que no se creen muchas instancias)
+                UI_Login frame_a_pasar = new UI_Login();
+                frame_a_pasar.setVisible(true);
+            }
+            //Si falta datos aun si el boton esta precionado
+        } else{ 
+            
+            //Erro, Datos faltantes
+            JOptionPane.showMessageDialog(this, "Datos Faltante");
         }
+        
+            if(!"".equals(userField.getText())&& !"".equals(tituloField.getText())){
+                Administrador new_admin = new Administrador(userField.getText(),passwordField.getText(),tituloField.getText());
+                Registrar_Administrador(new_admin);
+            }
+            
+    
+
+    }//Si las contraseñas no son iguales
+    if(!password1.equals(password2)){
+        //Erro, Contraseña incorrecta
+        JOptionPane.showMessageDialog(this, "Password incorrect");
+    }
+
+}
+
+/*Fin del codigo de register */
+
+
     }//GEN-LAST:event_enviarButtonActionPerformed
 
     private void atrasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasButtonActionPerformed
@@ -510,6 +573,24 @@ public class RegistroProponente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_juridicoButtonActionPerformed
 
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        if(jToggleButton1.isSelected()){
+            passwordField.setEchoChar((char)0);
+        }
+        else{
+            passwordField.setEchoChar('\u2022');
+        }
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+        if(jToggleButton2.isSelected()){
+            confirmField.setEchoChar((char)0);
+        }
+        else{
+            confirmField.setEchoChar('\u2022');
+        }
+    }//GEN-LAST:event_jToggleButton2ActionPerformed
+
                                              
 
     private void link(){
@@ -537,9 +618,25 @@ public class RegistroProponente extends javax.swing.JFrame {
                 
         }
         
-        
-        
     }
+   
+
+    public static void Registrar_Proponente(Proponente p)  //El metodo se encarga enviar el Usuario 
+    {
+        BD_Control new_data = BD_Control.getinstancia();// llama a la instancia Control Usuario 
+        new_data.agregarP(p);                          // llama al metodo de agregar para Guardar en la BD de la logica
+        new_data.mostrarP();
+
+    }
+    
+    public static void Registrar_Administrador(Administrador admin)  //El metodo se encarga enviar el Usuario 
+    {
+        BD_Control new_data = BD_Control.getinstancia();// llama a la instancia Control Usuario 
+        new_data.agregarA(admin);                          // llama al metodo de agregar para Guardar en la BD de la logica
+
+    }
+
+    
     
     /**
      * @param args the command line arguments
@@ -583,12 +680,13 @@ public class RegistroProponente extends javax.swing.JFrame {
     private javax.swing.JButton enviarButton;
     private javax.swing.JTextField islrField;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -599,6 +697,8 @@ public class RegistroProponente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton juridicoButton;
     private javax.swing.JTextField mercantilField;
     private javax.swing.JPasswordField passwordField;

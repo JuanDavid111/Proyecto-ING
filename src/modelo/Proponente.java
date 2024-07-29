@@ -14,7 +14,7 @@ public class Proponente extends Usuario
     private String ISLR;
     private String CV;
     private String Título_Universitario;
-    private String Registro_Mercantil;    //revisar
+    private String Registro_Mercantil=null;    //revisar
     private ArrayList<Curso> Cursos = new ArrayList<Curso>();
 
 
@@ -35,6 +35,10 @@ public class Proponente extends Usuario
     {
         Cursos.add(c);
         
+    }
+    
+    public ArrayList<Curso> getCursos() {
+        return Cursos;
     }
 
     @Override

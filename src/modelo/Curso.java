@@ -15,6 +15,10 @@ public class Curso implements Serializable{
         this.estado = estado;
     }
 
+    public Formulario getFormulario() {
+        return formulario;
+    }
+
 
 }
 

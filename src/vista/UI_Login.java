@@ -3,9 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package vista;
-import vista.RegistroProponente;
+import controlador.Admin_Control;
+import controlador.Proponente_Control;
 import static vista.UI_Login.registroframe;
-
+import java.awt.*;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Mattxx
@@ -59,7 +61,7 @@ public class UI_Login extends javax.swing.JFrame {
         passwordField1 = new javax.swing.JPasswordField();
         registerButton1 = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
-        eyesButton1 = new javax.swing.JToggleButton();
+        jToggleButton1 = new javax.swing.JToggleButton();
         jPanel5 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jLabel23 = new javax.swing.JLabel();
@@ -307,6 +309,11 @@ public class UI_Login extends javax.swing.JFrame {
         passwordField1.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
         passwordField1.setForeground(new java.awt.Color(255, 255, 255));
         passwordField1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        passwordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordField1ActionPerformed(evt);
+            }
+        });
 
         registerButton1.setBackground(new java.awt.Color(86, 81, 81));
         registerButton1.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
@@ -323,14 +330,11 @@ public class UI_Login extends javax.swing.JFrame {
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel21.setText("Login to continue");
 
-        eyesButton1.setBackground(new java.awt.Color(217, 217, 217));
-        eyesButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/Img/eye.png"))); // NOI18N
-        eyesButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        eyesButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        eyesButton1.setFocusable(false);
-        eyesButton1.addActionListener(new java.awt.event.ActionListener() {
+        jToggleButton1.setBackground(new java.awt.Color(217, 217, 217));
+        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/Img/eye.png"))); // NOI18N
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eyesButton1ActionPerformed(evt);
+                jToggleButton1ActionPerformed(evt);
             }
         });
 
@@ -346,12 +350,12 @@ public class UI_Login extends javax.swing.JFrame {
                     .addComponent(passwordField1)
                     .addComponent(userField1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(eyesButton1)
-                .addGap(8, 8, 8))
+                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(jButton10)
                 .addGap(47, 47, 47))
             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -375,11 +379,11 @@ public class UI_Login extends javax.swing.JFrame {
                 .addComponent(userField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel20)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(14, 14, 14)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(passwordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(eyesButton1))
-                .addGap(37, 37, 37)
+                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -397,7 +401,7 @@ public class UI_Login extends javax.swing.JFrame {
         jLabel23.setFont(new java.awt.Font("Monotype Corsiva", 1, 32)); // NOI18N
         jLabel23.setText("Login| Register");
 
-        jLabel24.setFont(new java.awt.Font("Monotype Corsiva", 1, 32)); // NOI18N
+        jLabel24.setFont(new java.awt.Font("Monotype Corsiva", 1, 48)); // NOI18N
         jLabel24.setText("Curseate ");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -407,7 +411,7 @@ public class UI_Login extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -429,7 +433,7 @@ public class UI_Login extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(461, Short.MAX_VALUE)
+                .addContainerGap(460, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(457, 457, 457))
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -440,7 +444,7 @@ public class UI_Login extends javax.swing.JFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(166, 166, 166)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -481,10 +485,12 @@ public class UI_Login extends javax.swing.JFrame {
 
     private void eyesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eyesButtonActionPerformed
         if(eyesButton.isSelected()){
-            passwordField.setEchoChar((char)0);
+            passwordField1.setEchoChar((char)0);
+            
         }
         else{
-            passwordField.setEchoChar('\u2022');
+            
+            passwordField1.setEchoChar('\u2022');
         }
     }//GEN-LAST:event_eyesButtonActionPerformed
 
@@ -501,27 +507,71 @@ public class UI_Login extends javax.swing.JFrame {
         
     }//GEN-LAST:event_registerButton1ActionPerformed
 
-    private void eyesButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eyesButton1ActionPerformed
-        if(eyesButton.isSelected()){
-            passwordField.setEchoChar((char)0);
-        } 
-        else{
-            passwordField.setEchoChar('\u2022');
-        } 
-    }//GEN-LAST:event_eyesButton1ActionPerformed
-
     private void jButton9jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9jButton1ActionPerformed
-        UI_Home homeFrame = new UI_Home();
-        homeFrame.setVisible(true);
-        this.dispose();
+        
+        /*Inicio del codigo para verificar si esta registrado en la base de datos */
+
+        //Se inicia tomando los datos del userField1 y passwordField1
+        String name = userField1.getText();
+        String password = passwordField1.getText();
+        
+        //Se intancia Proponente_Control para que guarde la variable que se va a buscar
+        Proponente_Control e = Proponente_Control.getinstancia();
+        
+        //El verificiacion da un valor de verdadero entonces
+        if(e.verificacion(name, password)){
+        //Se le daria el paso a Proponente o Administrador, segun donde haya sido presionado el boton y la logica
+        //Si se usa la misma logica para el administrador pues la implementacion es igual       
+            JOptionPane.showMessageDialog(this, "Usuario registrado, accediendo...");
+            UI_Home homeFrame = new UI_Home();
+            homeFrame.setVisible(true);
+            this.dispose();
+        }
+        //Si no esta registrado
+        else {
+        JOptionPane.showMessageDialog(this, "Usuario no registrado y/o Campos Vacíos");
+        }
+        
+        
     }//GEN-LAST:event_jButton9jButton1ActionPerformed
 
     private void jButton10jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10jButton2ActionPerformed
+        /*Inicio del codigo para verificar si esta registrado en la base de datos */
+
+        //Se inicia tomando los datos del userField1 y passwordField1
+        String name = userField1.getText();
+        String password = passwordField1.getText();
         
-        UI_Home_Admin homeFrame = new UI_Home_Admin();
-        homeFrame.setVisible(true);
-        this.dispose();
+        //Se intancia Proponente_Control para que guarde la variable que se va a buscar
+        Admin_Control sesion = Admin_Control.getinstancia();
+        
+        //El verificiacion da un valor de verdadero entonces
+        if(sesion.verificacion(name, password)){
+        //Se le daria el paso a Proponente o Administrador, segun donde haya sido presionado el boton y la logica
+        //Si se usa la misma logica para el administrador pues la implementacion es igual       
+            UI_Home_Admin homeFrame = new UI_Home_Admin();
+            homeFrame.setVisible(true);
+            this.dispose();
+        }
+        //Si no esta registrado
+        else {
+        JOptionPane.showMessageDialog(this, "Credenciales de Administrador Inválidas y/o Campos Vacíos");
+        }
+        
     }//GEN-LAST:event_jButton10jButton2ActionPerformed
+
+    private void passwordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordField1ActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        if(jToggleButton1.isSelected()){
+            passwordField1.setEchoChar((char)0);
+        } 
+        else{
+            passwordField1.setEchoChar('\u2022');
+        } 
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -560,7 +610,6 @@ public class UI_Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton eyesButton;
-    private javax.swing.JToggleButton eyesButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton7;
@@ -584,6 +633,7 @@ public class UI_Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JPasswordField passwordField1;
     private javax.swing.JButton registerButton;

@@ -66,4 +66,8 @@ public class Formulario implements Serializable{
         Cronograma_De_Ejecucion = cronograma_De_Ejecucion;
     }
 
+    public String getDenominacion() {
+        return Denominacion;
+    }
+
 }
