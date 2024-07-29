@@ -70,6 +70,8 @@ public class BD_Control implements Serializable {
     
  
     }
+
+
  
      public void guardarTxt()
     {  
