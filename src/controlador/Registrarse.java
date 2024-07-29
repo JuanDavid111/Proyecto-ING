@@ -1,5 +1,6 @@
 package controlador;
 
+import modelo.Administrador;
 import modelo.Proponente;
 import modelo.Usuario;
 
@@ -13,8 +14,13 @@ public class Registrarse {
     {
         Proponente p=new Proponente(User, Password, CI, RIF, ISLR, CV, Título_Universitario, Registro_Mercantil);
         C.agregarP(p);                                  // llama al metodo de agregar para Guardar en la BD de la logica
+        C.guardarTxt();
     }
     public static void Registrar(String User, String Password, String Departamento){
+        Administrador a=new Administrador(User, Password, Departamento);
+
+        C.agregarA(a);
+        C.guardarTxt();
 
 
     }

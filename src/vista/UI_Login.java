@@ -3,9 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package vista;
+import static vista.UI_Login.registroframe;
+import controlador.*;
 import controlador.Admin_Control;
 import controlador.Proponente_Control;
-import static vista.UI_Login.registroframe;
+
 import java.awt.*;
 import javax.swing.JOptionPane;
 /**

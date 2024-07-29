@@ -4,7 +4,7 @@
  */
 package vista;
 
-import controlador.BD_Control;
+import controlador.*;
 import modelo.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -458,19 +458,34 @@ public class RegistroProponente extends javax.swing.JFrame {
     //Almacena las contraseñas en una variable para que se puedean comparar
     String password1 = passwordField.getText(); // password
     String password2 = confirmField.getText(); // confirm password
+    String name = userField.getText();
 
+    //If para ver si el usuario esta registrado
 
-    //Preguntta si son iguales las contraseñas
-    if(password1.equals(password2)){
+    Proponente_Control e = Proponente_Control.getinstancia();
+        
+        //El verificiacion da un valor de verdadero entonces
+        if(e.verificacion(name, password1)){
+        //Se le daria el paso a Proponente o Administrador, segun donde haya sido presionado el boton y la logica
+        //Si se usa la misma logica para el administrador pues la implementacion es igual       
+            JOptionPane.showMessageDialog(this, "Usuario ya registrado previamente");
+            UI_Home homeFrame = new UI_Home();
+            homeFrame.setVisible(true);
+            this.dispose();
+        }
+        //Si no esta registrado
+        else {
+
+            //Preguntta si son iguales las contraseñas
+        if(password1.equals(password2)){
         //Si son iguales pasa a ver si los demas JField no estan vacios
         if(!"".equals(userField.getText()) && !"".equals(rifField.getText()) && !"".equals(islrField.getText()) && !"".equals(ciField.getText()) && !"".equals(tituloField.getText()) && !"".equals(resumenField.getText())){
             
             //Pregunta si el boton de juridico esta presionado y si esta precionado y tiene algo en el JField de mercantil pues registro exitoso
             if(juridicoButton.isSelected() && !"".equals(mercantilField.getText())){
-                //FGAFASFASFAF//
-                //FASFASFASFFSAF//
-                Proponente newProponent = new Proponente(userField.getText(),passwordField.getText(),islrField.getText(),ciField.getText(),tituloField.getText(),resumenField.getText(),mercantilField.getText());
-                Registrar_Proponente(newProponent);
+
+ 
+                
                 JOptionPane.showMessageDialog(this,"Registro exitoso");
                 this.setVisible(false);
                 //Crea un nuevo Login Frame(Si pueden cambiar esta logica para que no se creen muchas instancias)
@@ -484,29 +499,42 @@ public class RegistroProponente extends javax.swing.JFrame {
             }
             //Si el boton NO esta presionado pues registro exitoso
             else if(!juridicoButton.isSelected()){
+
                 
-                //FGAFASFASFAF//
-                Proponente newProponent = new Proponente(userField.getText(),passwordField.getText(),islrField.getText(),ciField.getText(),tituloField.getText(),resumenField.getText(),mercantilField.getText());
-                Registrar_Proponente(newProponent);
+
+
+
                 JOptionPane.showMessageDialog(this,"Registro exitoso");
                 this.setVisible(false);
                 //Crea un nuevo Login Frame(Si pueden cambiar esta logica para que no se creen muchas instancias)
                 UI_Login frame_a_pasar = new UI_Login();
                 frame_a_pasar.setVisible(true);
             }
-            //Si falta datos aun si el boton esta precionado
-        } else{ 
+            //registrar administrador
+        } else if(!"".equals(userField.getText())&& !"".equals(tituloField.getText())){
+            JOptionPane.showMessageDialog(this, "Administrador Registrado");
+            Administrador new_admin = new Administrador(userField.getText(),passwordField.getText(),tituloField.getText());
+            Registrar_Administrador(new_admin);
+            this.setVisible(false);
+            //Crea un nuevo Login Frame(Si pueden cambiar esta logica para que no se creen muchas instancias)
+            UI_Login frame_a_pasar = new UI_Login();
+            frame_a_pasar.setVisible(true);
+            
+        } else{ //Si falta datos aun si el boton esta precionado
             
             //Erro, Datos faltantes
             JOptionPane.showMessageDialog(this, "Datos Faltante");
         }
+
+        }
+
+    //Fin del if
+
+                                        
         
-            if(!"".equals(userField.getText())&& !"".equals(tituloField.getText())){
-                Administrador new_admin = new Administrador(userField.getText(),passwordField.getText(),tituloField.getText());
-                Registrar_Administrador(new_admin);
-            }
+        
             
-    
+       
 
     }//Si las contraseñas no son iguales
     if(!password1.equals(password2)){

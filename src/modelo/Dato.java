@@ -30,6 +30,10 @@ public class Dato implements Serializable{
         return Proponentes;
     }
 
+    public ArrayList<Administrador> getAdministradores() {
+        return Administradores;
+    }
+
 
 
     

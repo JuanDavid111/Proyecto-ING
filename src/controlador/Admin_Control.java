@@ -29,14 +29,13 @@ public class Admin_Control {
     
     
     
-    /*public boolean verificacion(String user,String password){
+    public boolean verificacion(String user,String password){
         
         BD_Control c=BD_Control.getinstancia();
-        c.cargarSesionAdministradores(); 
         Admin = c.buscarAdmin(user, password);
            return !(Admin == null);
     }
-    */
+    
     
 
 

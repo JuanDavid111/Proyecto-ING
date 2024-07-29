@@ -1,12 +1,9 @@
 package controlador;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
-
-import modelo.Usuario;
 import modelo.Administrador;
 import modelo.Dato;
 import modelo.Proponente;
-
 import java.io.Serializable;
 
 
@@ -18,14 +15,14 @@ public class BD_Control implements Serializable {
     
     private static BD_Control instancia;
 
-    private Dato D;
+    private Dato DB;
     //private ArrayList<administradore> Usuarios= new ArrayList<Object>();
 
-    private static String Ruta = "Datos.txt";
+    private final static String RUTA = "BD.txt";
                                                                     
     private BD_Control()
     {
-        D=new Dato();
+        DB=new Dato();
         
     }
     public static BD_Control getinstancia()
@@ -38,26 +35,28 @@ public class BD_Control implements Serializable {
 
     public void agregarP(Proponente P)
     {
-        D.agregarP(P);
+        DB.agregarP(P);
+        Control_Archivo.serializarObjeto(RUTA, DB);
     }
     public void agregarA(Administrador A)
     {
-        D.agregarA(A);
+        DB.agregarA(A);
+        Control_Archivo.serializarObjeto(RUTA, DB);
     }
     
 
     public void mostrarP()
     {
-        D.mostrar();
+        DB.mostrar();
         
     }
 
 
     public Proponente buscarP(String user,String password){
 
-        ArrayList<Proponente> Proponentes = D.getProponentes();
+        ArrayList<Proponente> Proponentes = DB.getProponentes();
         
-        for(Proponente p : Proponentes){
+        for(Proponente p : Proponentes){ 
         if(user.equals(p.getUser()) && password.equals(p.getPassword())){
             
         return p;
@@ -67,27 +66,44 @@ public class BD_Control implements Serializable {
         }
         
     return null;
+    
+ 
     }
+    public Administrador buscarAdmin(String user,String password){
 
-
+        ArrayList<Administrador> Administradores=DB.getAdministradores();
+        
+        for(Administrador admin : Administradores){ 
+        if(user.equals(admin.getUser()) && password.equals(admin.getPassword())){
+            
+        return admin;
+            
+        }
+            
+        }
+        
+    return null;
+    
+ 
+    }
  
      public void guardarTxt()
     {  
-        Control_Archivo.serializarObjeto(Ruta, D);
+        Control_Archivo.serializarObjeto(RUTA,DB);
     }
 
     public void cargarTxt()
     {
-        Dato Datotm=new Dato();
+        Dato Datotm = new Dato();
 
-        Datotm=Control_Archivo.deserializarObjeto(Ruta, Dato.class);  //esta funcion se encarga de sacar los datos del archivo y guardaros en la lista en la logica
+        Datotm=Control_Archivo.deserializarObjeto(RUTA, Dato.class);  //esta funcion se encarga de sacar los datos del archivo y guardaros en la lista en la logica
         if (Datotm==null) 
         {
-            System.out.println("vasio crear nueva carpeta");
+            System.out.println("vacio crear nueva carpeta");
         }
         else
         {
-            D=Datotm;
+            DB=Datotm;
         }
     }
 

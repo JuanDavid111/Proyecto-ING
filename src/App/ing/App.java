@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import controlador.Admin_Control;
 import controlador.BD_Control;
 import controlador.Control_Archivo;
 import controlador.Proponente_Control;
@@ -34,32 +35,35 @@ public class App {
 
         
 
-        Formulario F=new Formulario("Misto", null, null, null, null, null, null, null, null, null, null);
-        Administrador a1=new Administrador("Carlos", "456", "ciencia");
+        Formulario F=new Formulario("Mixto", null, null, null, null, null, null, null, null, null, null);
+        
 
         BD_Control c=BD_Control.getinstancia();
         c.cargarTxt();
+    
 
         Proponente_Control p=Proponente_Control.getinstancia();
+        Admin_Control A=Admin_Control.getinstancia();
 
-        //Registrarse.Registrar_Proponente(p1);
+        //Registrarse.Registrar("Carlos","123","Ciencia");
 
-        p.verificiacion("juan", "123");
+
+        System.out.println(A.verificacion("Juan", "123"));
+        
 
 
         p1.mostrar();
 
         //p.Proponer_Curso(F);
-        p.Ver_Curso();
+        //p.Ver_Curso();
 
         
         
 
         //System.out.println(p.verificiacion("juan", "124"));
-
-        //c.guardarTxt();
     
         c.mostrarP();
+    
            
     
     }

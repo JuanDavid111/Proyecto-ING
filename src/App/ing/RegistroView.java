@@ -1,4 +1,5 @@
 package App.ing;
+import controlador.BD_Control;
 import vista.UI_Login;
 
 /*
@@ -17,6 +18,8 @@ public class RegistroView {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        BD_Control c=BD_Control.getinstancia();
+        c.cargarTxt();
         UI_Login inicial = new UI_Login();
         inicial.setVisible(true);
         // TODO code application logic here
