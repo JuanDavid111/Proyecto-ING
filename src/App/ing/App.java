@@ -1,3 +1,5 @@
+package App.ing;
+
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
@@ -5,6 +7,7 @@ import java.util.ArrayList;
 
 import controlador.BD_Control;
 import controlador.Control_Archivo;
+import controlador.Proponente_Control;
 import modelo.Administrador;
 import modelo.Proponente;
 import modelo.Usuario;
@@ -28,11 +31,20 @@ public class App {
         Administrador a1=new Administrador("Carlos", "456", "ciencia");
 
         BD_Control c=BD_Control.getinstancia();
+        c.cargarTxt();
 
         c.agregarP(p3);
         c.agregarP(p1);
         c.agregarP(p2);
         c.agregarA(a1);
+        
+
+        Proponente_Control p=Proponente_Control.getinstancia();
+
+        //System.out.println(p.verificiacion("juan", "124"));
+
+        c.guardarTxt();
+    
         c.mostrarP();
         
         

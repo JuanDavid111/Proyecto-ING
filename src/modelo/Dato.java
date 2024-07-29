@@ -1,8 +1,9 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Dato {
+public class Dato implements Serializable{
     private ArrayList<Proponente> Proponentes= new ArrayList<Proponente>();
     private ArrayList<Administrador> Administradores= new ArrayList<Administrador>();
 

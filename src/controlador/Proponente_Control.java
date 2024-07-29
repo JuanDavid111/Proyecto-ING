@@ -23,17 +23,18 @@ public class Proponente_Control {
         return PC;
     }
     
+    public boolean verificiacion(String user,String password){
+        
+        BD_Control c=BD_Control.getinstancia();
+        P1 = c.buscarP(user, password);
+           if(P1 == null){
+           return false;    
+           }
+           
+           return true;
+    }
+    
     
 
-    /*public void Nuevo_Curso()
-    {
-
-    }
-
-    public void Proponer_Curso(Formulario F1){
-        
-        LLenar_Formulario.Guardad_Curso(C1, F1, P1);
-    }
-*/
 
 }

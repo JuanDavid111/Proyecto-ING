@@ -40,7 +40,7 @@ public class Proponente extends Usuario
     @Override
     public void mostrar() {
         
-        System.out.println(CI+" "+RIF+" "+ISLR);
+        System.out.println(getUser()+" "+RIF+" "+ISLR);
     }
 
 

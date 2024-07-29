@@ -20,8 +20,8 @@ public abstract class Usuario implements Serializable {
 
     public abstract void mostrar();
 
-    public void getUser() {
-        System.out.println(User);
+    public String getUser() {
+        return User;
     }
 
     public String getPassword() {

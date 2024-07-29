@@ -10,13 +10,13 @@ import modelo.Proponente;
 import java.io.Serializable;
 
 
+
 //Esta clase se va a encargar de Controlar de las operaciones que están relacionadas con la gestión básica de la “base de dato” 
 //en la lógica 
 
 public class BD_Control implements Serializable {  
     
     private static BD_Control instancia;
-    private static BD_Control prueba;
 
     private Dato D;
     //private ArrayList<administradore> Usuarios= new ArrayList<Object>();
@@ -51,37 +51,46 @@ public class BD_Control implements Serializable {
         D.mostrar();
         
     }
-    
 
-    public ArrayList<Proponente> sacarP()
-    {
-        return D.getProponentes();
 
-    }
-/* 
-     public void guardarTxt()
-    {
+    public Proponente buscarP(String user,String password){
+
+        ArrayList<Proponente> Proponentes = D.getProponentes();
         
-
-
-        Control_Archivo.serializarObjeto(Ruta, instancia);
+        for(Proponente p : Proponentes){
+        if(user.equals(p.getUser()) && password.equals(p.getPassword())){
+            
+        return p;
+            
+        }
+            
+        }
+        
+    return null;
+    
+ 
+    }
+ 
+     public void guardarTxt()
+    {  
+        Control_Archivo.serializarObjeto(Ruta, D);
     }
 
-    public BD_Control cargarTxt()
+    public void cargarTxt()
     {
-        prueba=Control_Archivo.deserializarObjeto(Ruta, BD_Control.class);  //esta funcion se encarga de sacar los datos del archivo y guardaros en la lista en la logica
-        if (prueba==null) 
+        Dato Datotm=new Dato();
+
+        Datotm=Control_Archivo.deserializarObjeto(Ruta, Dato.class);  //esta funcion se encarga de sacar los datos del archivo y guardaros en la lista en la logica
+        if (Datotm==null) 
         {
             System.out.println("vasio crear nueva carpeta");
-            return instancia;
         }
         else
         {
-            instancia=prueba;
-            prueba=null;
-            return instancia;
+            D=Datotm;
         }
     }
 
-*/
+
+
 }
