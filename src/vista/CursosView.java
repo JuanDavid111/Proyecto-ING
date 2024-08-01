@@ -4,6 +4,16 @@
  */
 package vista;
 
+import controlador.BD_Control;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import javax.swing.JPopupMenu;
+import javax.swing.JMenuItem;
+import javax.swing.table.DefaultTableModel;
+import modelo.Curso;
+import modelo.Proponente;
+
 /**
  *
  * @author Mattxx
@@ -15,6 +25,7 @@ public class CursosView extends javax.swing.JFrame {
      */
     public CursosView() {
         initComponents();
+        LlenarTable();
     }
     
     /**
@@ -142,33 +153,14 @@ public class CursosView extends javax.swing.JFrame {
         jTable1.setForeground(new java.awt.Color(217, 217, 217));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Nombre del Curso", "Duración", "Proponente", "Estado Aprobación"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false
@@ -269,6 +261,120 @@ public class CursosView extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton9jButton1ActionPerformed
 
+     private void LlenarTable() {
+        
+        BD_Control DB = BD_Control.getinstancia();
+        ArrayList<Proponente> Proponentes= DB.getProponentes();
+        DefaultTableModel dt = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row,int col) {
+                return false;
+            }
+        }; 
+        dt.addColumn("Nombre del Curso");
+        dt.addColumn("Duración");
+        dt.addColumn("Proponente");
+        dt.addColumn("Estado Aprobación");
+        
+        for (Proponente Proponente : Proponentes) {
+            
+            ArrayList<Curso> Cursos = Proponente.getCursos();
+            if(!Cursos.isEmpty()){
+                for(Curso curso : Cursos){
+                    Object p[] = new Object[4];
+                    p[0]=curso.getFormulario().getDenominacion();
+                    p[1]=curso.getFormulario().getDuracion();
+                    p[2]=Proponente.getNombre();
+                    p[3]=curso.getEstado();
+                    dt.addRow(p);
+                } 
+            } 
+        }
+        jTable1.setModel(dt);
+        
+        JPopupMenu pop = new JPopupMenu();
+        JMenuItem menu1 = new JMenuItem("Aprobar Propuesta Curso");
+        JMenuItem menu2 = new JMenuItem("Poner curso en espera");
+        JMenuItem menu3 = new JMenuItem("Rechazar Propuesta Curso");
+        pop.add(menu1);
+        pop.add(menu2);
+        pop.add(menu3);
+        jTable1.setComponentPopupMenu(pop);
+        menu1.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DefaultTableModel modelo= (DefaultTableModel)jTable1.getModel();
+                Object p = "Aprobado";
+                modelo.setValueAt(p,jTable1.getSelectedRow(), 3);
+                jTable1.setModel(modelo);
+                String nombreCurso= modelo.getValueAt(jTable1.getSelectedRow(), 0).toString();
+                String nombre= modelo.getValueAt(jTable1.getSelectedRow(), 2).toString();
+                for (Proponente Proponente : Proponentes) {
+                    ArrayList<Curso> Cursos = Proponente.getCursos();
+                    for(Curso curso : Cursos){
+                        if(Proponente.getNombre().equals(nombre) && curso.getFormulario().getDenominacion().equals(nombreCurso)){
+                            curso.setEstado(true); DB.guardarTxt();
+                           
+                        }
+                    }
+                    
+                }
+            }
+            
+            }
+        );
+        
+        menu2.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DefaultTableModel modelo= (DefaultTableModel)jTable1.getModel();
+                Object p = "En Espera";
+                modelo.setValueAt(p,jTable1.getSelectedRow(), 3);
+                jTable1.setModel(modelo);
+                String nombreCurso= modelo.getValueAt(jTable1.getSelectedRow(), 0).toString();
+                String nombre= modelo.getValueAt(jTable1.getSelectedRow(), 2).toString();
+                for (Proponente Proponente : Proponentes) {
+                    ArrayList<Curso> Cursos = Proponente.getCursos();
+                    for(Curso curso : Cursos){
+                        if(Proponente.getNombre().equals(nombre) && curso.getFormulario().getDenominacion().equals(nombreCurso)){
+                            curso.setEstado(false); DB.guardarTxt();
+                           
+                        }
+                    }
+                    
+                }
+            }
+            
+            }
+        );
+        
+        menu3.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DefaultTableModel modelo= (DefaultTableModel)jTable1.getModel();
+                Object p = "Rechazado";
+                modelo.setValueAt(p,jTable1.getSelectedRow(), 3);
+                jTable1.setModel(modelo);
+                String nombreCurso= modelo.getValueAt(jTable1.getSelectedRow(), 0).toString();
+                String nombre= modelo.getValueAt(jTable1.getSelectedRow(), 2).toString();
+                for (Proponente Proponente : Proponentes) {
+                    ArrayList<Curso> Cursos = Proponente.getCursos();
+                    for(Curso curso : Cursos){
+                        if(Proponente.getNombre().equals(nombre) && curso.getFormulario().getDenominacion().equals(nombreCurso)){
+                            curso.setEstado(false); DB.guardarTxt();
+                           
+                        }
+                    }
+                    
+                }
+            }
+            
+            }
+        );
+    } 
+    
+     
+   
     /**
      * @param args the command line arguments
      */

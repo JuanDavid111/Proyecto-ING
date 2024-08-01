@@ -469,22 +469,22 @@ public class RegistroProponente extends javax.swing.JFrame {
         //Se le daria el paso a Proponente o Administrador, segun donde haya sido presionado el boton y la logica
         //Si se usa la misma logica para el administrador pues la implementacion es igual       
             JOptionPane.showMessageDialog(this, "Usuario ya registrado previamente");
-            UI_Home homeFrame = new UI_Home();
-            homeFrame.setVisible(true);
-            this.dispose();
+            userField.setText("");
+            passwordField.setText("");
+            confirmField.setText("");
         }
         //Si no esta registrado
-        else {
+        else { Registrarse usuario = new Registrarse();
 
             //Preguntta si son iguales las contraseñas
-        if(password1.equals(password2)){
+        if(password1.equals(password2)){ 
         //Si son iguales pasa a ver si los demas JField no estan vacios
         if(!"".equals(userField.getText()) && !"".equals(rifField.getText()) && !"".equals(islrField.getText()) && !"".equals(ciField.getText()) && !"".equals(tituloField.getText()) && !"".equals(resumenField.getText())){
             
             //Pregunta si el boton de juridico esta presionado y si esta precionado y tiene algo en el JField de mercantil pues registro exitoso
             if(juridicoButton.isSelected() && !"".equals(mercantilField.getText())){
 
- 
+                usuario.Registrar(userField.getText(),passwordField.getText(),ciField.getText(),rifField.getText(),islrField.getText(),resumenField.getText(),tituloField.getText(),mercantilField.getText());
                 
                 JOptionPane.showMessageDialog(this,"Registro exitoso");
                 this.setVisible(false);
@@ -500,9 +500,7 @@ public class RegistroProponente extends javax.swing.JFrame {
             //Si el boton NO esta presionado pues registro exitoso
             else if(!juridicoButton.isSelected()){
 
-                
-
-
+                usuario.Registrar(userField.getText(),passwordField.getText(),ciField.getText(),rifField.getText(),islrField.getText(),resumenField.getText(),tituloField.getText(),mercantilField.getText());
 
                 JOptionPane.showMessageDialog(this,"Registro exitoso");
                 this.setVisible(false);
@@ -512,29 +510,24 @@ public class RegistroProponente extends javax.swing.JFrame {
             }
             //registrar administrador
         } else if(!"".equals(userField.getText())&& !"".equals(tituloField.getText())){
+            
+            usuario.Registrar(userField.getText(),passwordField.getText(),tituloField.getText());
+            
             JOptionPane.showMessageDialog(this, "Administrador Registrado");
-            Administrador new_admin = new Administrador(userField.getText(),passwordField.getText(),tituloField.getText());
-            Registrar_Administrador(new_admin);
             this.setVisible(false);
             //Crea un nuevo Login Frame(Si pueden cambiar esta logica para que no se creen muchas instancias)
             UI_Login frame_a_pasar = new UI_Login();
             frame_a_pasar.setVisible(true);
             
-        } else{ //Si falta datos aun si el boton esta precionado
+        } else{ // Si falta datos aun si el boton esta precionado
             
-            //Erro, Datos faltantes
+            // Error, Datos faltantes
             JOptionPane.showMessageDialog(this, "Datos Faltante");
         }
 
         }
-
-    //Fin del if
-
-                                        
         
-        
-            
-       
+    //Fin del if    
 
     }//Si las contraseñas no son iguales
     if(!password1.equals(password2)){
@@ -647,25 +640,6 @@ public class RegistroProponente extends javax.swing.JFrame {
         }
         
     }
-   
-
-    public static void Registrar_Proponente(Proponente p)  //El metodo se encarga enviar el Usuario 
-    {
-        BD_Control new_data = BD_Control.getinstancia();// llama a la instancia Control Usuario 
-        new_data.agregarP(p);                          // llama al metodo de agregar para Guardar en la BD de la logica
-        new_data.mostrarP();
-
-    }
-    
-    public static void Registrar_Administrador(Administrador admin)  //El metodo se encarga enviar el Usuario 
-    {
-        BD_Control new_data = BD_Control.getinstancia();// llama a la instancia Control Usuario 
-        new_data.agregarA(admin);                          // llama al metodo de agregar para Guardar en la BD de la logica
-
-    }
-
-    
-    
     /**
      * @param args the command line arguments
      */

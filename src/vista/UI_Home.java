@@ -4,6 +4,13 @@
  */
 package vista;
 
+import controlador.Proponente_Control;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import modelo.Curso;
+
 /**
  *
  * @author Mattxx
@@ -15,6 +22,10 @@ public class UI_Home extends javax.swing.JFrame {
      */
     public UI_Home() {
         initComponents();
+        mostrarDatos();
+        carta.setVisible(false);
+        jButton3.setVisible(false);
+        
     }
 
     /**
@@ -34,9 +45,9 @@ public class UI_Home extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        Nombre = new javax.swing.JLabel();
+        Cedula = new javax.swing.JLabel();
+        Aliado = new javax.swing.JLabel();
         jButton11 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
@@ -44,7 +55,9 @@ public class UI_Home extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        carta = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        generarcarta = new javax.swing.JToggleButton();
 
         jButton10.setBackground(new java.awt.Color(86, 81, 81));
         jButton10.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
@@ -111,14 +124,14 @@ public class UI_Home extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(217, 217, 217));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI Historic", 1, 18)); // NOI18N
-        jLabel3.setText("Nombre");
+        Nombre.setFont(new java.awt.Font("Segoe UI Historic", 1, 18)); // NOI18N
+        Nombre.setText("Nombre");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI Historic", 1, 18)); // NOI18N
-        jLabel4.setText("Cédula");
+        Cedula.setFont(new java.awt.Font("Segoe UI Historic", 1, 18)); // NOI18N
+        Cedula.setText("Cédula");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI Historic", 1, 18)); // NOI18N
-        jLabel5.setText("Aliado");
+        Aliado.setFont(new java.awt.Font("Segoe UI Historic", 1, 18)); // NOI18N
+        Aliado.setText("Aliado");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -127,20 +140,20 @@ public class UI_Home extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3))
+                    .addComponent(Aliado)
+                    .addComponent(Cedula)
+                    .addComponent(Nombre))
                 .addContainerGap(575, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3)
+                .addComponent(Nombre)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addComponent(Cedula)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
+                .addComponent(Aliado)
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -159,8 +172,8 @@ public class UI_Home extends javax.swing.JFrame {
         jButton13.setBackground(new java.awt.Color(86, 81, 81));
         jButton13.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
         jButton13.setForeground(new java.awt.Color(255, 255, 255));
+        jButton13.setText("Cerrar Sesión");
         jButton13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton13.setLabel("Volver a Login");
         jButton13.setPreferredSize(new java.awt.Dimension(103, 23));
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,6 +192,7 @@ public class UI_Home extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Segoe UI Historic", 1, 18)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/Img/docs.png"))); // NOI18N
         jButton2.setText("Propon");
+        jButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -216,13 +230,29 @@ public class UI_Home extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Sitka Text", 0, 24)); // NOI18N
         jLabel6.setText("Generar Cartas");
 
-        jButton1.setBackground(new java.awt.Color(217, 217, 217));
-        jButton1.setFont(new java.awt.Font("Segoe UI Historic", 1, 18)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/Img/Folder-1.png"))); // NOI18N
-        jButton1.setText("Propon");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        carta.setBackground(new java.awt.Color(86, 81, 81));
+        carta.setForeground(new java.awt.Color(255, 255, 255));
+        carta.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        carta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                cartaActionPerformed(evt);
+            }
+        });
+
+        jButton3.setBackground(new java.awt.Color(86, 81, 81));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Enviar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        generarcarta.setBackground(new java.awt.Color(217, 217, 217));
+        generarcarta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/Img/Folder-1.png"))); // NOI18N
+        generarcarta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generarcartaActionPerformed(evt);
             }
         });
 
@@ -233,19 +263,27 @@ public class UI_Home extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(73, 73, 73)
+                .addComponent(carta, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addComponent(jButton3)
+                .addContainerGap(26, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(112, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(121, 121, 121))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(generarcarta, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(92, 92, 92))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(carta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(generarcarta, javax.swing.GroupLayout.PREFERRED_SIZE, 291, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -321,7 +359,9 @@ public class UI_Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton12jButton1ActionPerformed
 
     private void jButton11jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11jButton1ActionPerformed
-       
+        ProponerView frameProponer = new ProponerView();
+        frameProponer.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton11jButton1ActionPerformed
 
     private void jButton13jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13jButton1ActionPerformed
@@ -330,16 +370,78 @@ public class UI_Home extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton13jButton1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         CursosView_Proponente newFrame2 = new CursosView_Proponente();
         newFrame2.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void cartaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cartaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cartaActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    String algo = carta.getText();
+    if(evt.getSource() == jButton3 ){
+    carta.setVisible(false);
+    carta.setText("");
+    generarcarta.setSelected(false);
+    }    // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void generarcartaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarcartaActionPerformed
+    if(generarcarta.isSelected()){
+        
+        jButton3.setVisible(true);
+        carta.setVisible(true);
+        JOptionPane.showMessageDialog(this, "Sube tus carta aqui");
+        link();
+    }          // TODO add your handling code here:
+    }//GEN-LAST:event_generarcartaActionPerformed
+
+    //esta funcion se va a encargar de mostrar los datos de proponente registrado
+
+    private void mostrarDatos() {
+        Proponente_Control session = Proponente_Control.getinstancia();
+        ArrayList<Curso> Cursos = session.getProponente().getCursos();
+        Aliado.setText("Propononente: Sin cursos aprobados (No aliado)");
+        if(!Cursos.isEmpty()){
+            for(Curso curso : Cursos){
+                if(curso.getEstado()) Aliado.setText("Aliado: Avalado (externo/interno)");
+            } 
+        }
+        Nombre.setText("Nombre:   " + session.getProponente().getNombre());
+        Cedula.setText("Cedula:  V-" + session.getProponente().getCedula());
+    }
+    
+    private void link(){
+        if(java.awt.Desktop.isDesktopSupported()){
+            java.awt.Desktop computadora=java.awt.Desktop.getDesktop();
+            if(computadora.isSupported(java.awt.Desktop.Action.BROWSE)){
+                
+               try{
+                   java.net.URI link=new java.net.URI("https://drive.google.com/drive/folders/1WXbVFNa22LiJjSN5ZXmyfkUkYf9qDjLM?usp=sharing");
+                   computadora.browse(link);
+               }catch(IOException | URISyntaxException e){
+                   
+                   e.printStackTrace();
+                   
+               }
+            
+            }
+            
+            else {
+                System.out.println("No se puede");
+                System.exit(0);
+            }
+                
+                
+        }
+        
+        
+        
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -376,18 +478,20 @@ public class UI_Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel Aliado;
+    private javax.swing.JLabel Cedula;
+    private javax.swing.JLabel Nombre;
+    private javax.swing.JTextField carta;
+    private javax.swing.JToggleButton generarcarta;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;

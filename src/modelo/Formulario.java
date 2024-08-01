@@ -14,7 +14,6 @@ public class Formulario implements Serializable{
     String Estructura_Costo;
     String Cronograma_De_Ejecucion;
 
-
     public Formulario(String Denominacion,String Objetivos,String Fundamentacion,String Perfiles_I_E,String Perfil_Docente,String Estructura_Curricular,String Estrategias_Evaluacion,String Exigencias_y_Servicios,String Duracion,String Estructura_Costo,String Cronograma_De_Ejecucion)
     {
          this.Denominacion=Denominacion;
@@ -68,6 +67,9 @@ public class Formulario implements Serializable{
 
     public String getDenominacion() {
         return Denominacion;
+    }
+    public String getDuracion(){
+        return Duracion;
     }
 
 }

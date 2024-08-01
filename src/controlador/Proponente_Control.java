@@ -18,7 +18,7 @@ public class Proponente_Control {
     private Proponente_Control()
     {}
 
-    public static Proponente_Control getinstancia() // se uso el patrol de diseñño singleton
+    public static Proponente_Control getinstancia() // se uso el patrol de diseño singleton
     {
         if (PC==null) {
             PC=new Proponente_Control();
@@ -43,8 +43,8 @@ public class Proponente_Control {
         Curso c=new Curso();
         c.setFormulario(F);
         P1.agregarCurso(c);
-  
-   
+        BD_Control session=BD_Control.getinstancia();
+        session.guardarTxt();
     }
 
     public void Ver_Curso()
@@ -58,10 +58,12 @@ public class Proponente_Control {
         System.out.println(D);
 
     }
-
+        
 
     }
-    
+    public Proponente getProponente(){
+        return P1;
+    }
     
 
 

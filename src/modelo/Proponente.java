@@ -40,12 +40,18 @@ public class Proponente extends Usuario
     public ArrayList<Curso> getCursos() {
         return Cursos;
     }
-
+    
     @Override
     public void mostrar() {
         
         System.out.println(getUser()+" "+RIF+" "+ISLR);
     }
 
-
+    public String getNombre(){
+        return getUser();
+    }
+    
+    public String getCedula(){
+        return CI;
+    }
 }

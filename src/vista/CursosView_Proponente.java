@@ -4,6 +4,13 @@
  */
 package vista;
 
+import controlador.BD_Control;
+import controlador.Proponente_Control;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import modelo.Curso;
+import modelo.Proponente;
+
 /**
  *
  * @author Celeste Quevedo
@@ -15,6 +22,7 @@ public class CursosView_Proponente extends javax.swing.JFrame {
      */
     public CursosView_Proponente() {
         initComponents();
+        LlenarTable();
     }
 
     /**
@@ -91,36 +99,17 @@ public class CursosView_Proponente extends javax.swing.JFrame {
         jTable1.setForeground(new java.awt.Color(217, 217, 217));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Nombre del Curso", "Duración", "Proponente", "Estado Aprobación"
+                "Nombre del Curso", "Duración", "Estado Aprobación"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+                java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -227,7 +216,37 @@ public class CursosView_Proponente extends javax.swing.JFrame {
         homeFrame.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton9jButton1ActionPerformed
-
+    
+    private void LlenarTable() {
+        
+        Proponente_Control Proponente = Proponente_Control.getinstancia();
+        DefaultTableModel dt = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row,int col) {
+                return false;
+            }
+        }; 
+        dt.addColumn("Nombre del Curso");
+        dt.addColumn("Duración");
+        dt.addColumn("Estado Aprobación");
+        
+        
+            
+        ArrayList<Curso> Cursos = Proponente.getProponente().getCursos();
+        if(!Cursos.isEmpty()){
+            for(Curso curso : Cursos){
+                Object p[] = new Object[3];
+                p[0]=curso.getFormulario().getDenominacion();
+                p[1]=curso.getFormulario().getDuracion();
+                p[2]=curso.getEstado();
+                dt.addRow(p);
+            } 
+        }
+              
+        jTable1.setModel(dt);
+        
+    } 
+    
     /**
      * @param args the command line arguments
      */

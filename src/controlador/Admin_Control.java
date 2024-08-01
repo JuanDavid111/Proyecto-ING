@@ -1,9 +1,5 @@
 package controlador;
 
-import controlador.BD_Control;
-import java.util.ArrayList;
-import modelo.Administrador;
-import modelo.Dato;
 import modelo.Usuario;
 
 
@@ -36,7 +32,9 @@ public class Admin_Control {
            return !(Admin == null);
     }
     
-    
+    public String getNombre(){
+        return Admin.getUser();
+    }
 
 
 }

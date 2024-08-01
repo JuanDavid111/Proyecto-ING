@@ -4,6 +4,12 @@
  */
 package vista;
 
+import controlador.Admin_Control;
+import controlador.BD_Control;
+import controlador.Proponente_Control;
+import java.util.ArrayList;
+import modelo.Curso;
+
 /**
  *
  * @author Mattxx
@@ -15,6 +21,7 @@ public class UI_Home_Admin extends javax.swing.JFrame {
      */
     public UI_Home_Admin() {
         initComponents();
+        mostrarDatos();
     }
 
     /**
@@ -38,9 +45,9 @@ public class UI_Home_Admin extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jPanel7 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        Nombre = new javax.swing.JLabel();
+        Cargo = new javax.swing.JLabel();
+        Administrador = new javax.swing.JLabel();
         jButton12 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -159,18 +166,16 @@ public class UI_Home_Admin extends javax.swing.JFrame {
                     .addContainerGap(310, Short.MAX_VALUE)))
         );
 
-        jButton6.getAccessibleContext().setAccessibleName("Cursos");
-
         jPanel7.setBackground(new java.awt.Color(217, 217, 217));
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI Historic", 1, 18)); // NOI18N
-        jLabel12.setText("Nombre");
+        Nombre.setFont(new java.awt.Font("Segoe UI Historic", 1, 18)); // NOI18N
+        Nombre.setText("Nombre");
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI Historic", 1, 18)); // NOI18N
-        jLabel13.setText("Cédula");
+        Cargo.setFont(new java.awt.Font("Segoe UI Historic", 1, 18)); // NOI18N
+        Cargo.setText("Cargo");
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI Historic", 1, 18)); // NOI18N
-        jLabel14.setText("Administrador");
+        Administrador.setFont(new java.awt.Font("Segoe UI Historic", 1, 18)); // NOI18N
+        Administrador.setText("Administrador");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -179,28 +184,28 @@ public class UI_Home_Admin extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel12))
+                    .addComponent(Administrador)
+                    .addComponent(Cargo)
+                    .addComponent(Nombre))
                 .addContainerGap(575, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel12)
+                .addComponent(Nombre)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel13)
+                .addComponent(Cargo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel14)
+                .addComponent(Administrador)
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
         jButton12.setBackground(new java.awt.Color(86, 81, 81));
         jButton12.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
         jButton12.setForeground(new java.awt.Color(255, 255, 255));
+        jButton12.setText("Cerrar Sesiòn");
         jButton12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton12.setLabel("Volver a Login");
         jButton12.setPreferredSize(new java.awt.Dimension(103, 23));
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -230,7 +235,7 @@ public class UI_Home_Admin extends javax.swing.JFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -273,7 +278,11 @@ public class UI_Home_Admin extends javax.swing.JFrame {
         loginForm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton12jButton1ActionPerformed
-
+    private void mostrarDatos() {
+        Admin_Control session = Admin_Control.getinstancia();
+        Nombre.setText("Nombre:   " + session.getNombre());
+        Cargo.setText("Cargo:  DEU");
+    }
     /**
      * @param args the command line arguments
      */
@@ -311,15 +320,15 @@ public class UI_Home_Admin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Administrador;
+    private javax.swing.JLabel Cargo;
+    private javax.swing.JLabel Nombre;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JPanel jPanel1;

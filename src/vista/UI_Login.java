@@ -10,6 +10,8 @@ import controlador.Proponente_Control;
 
 import java.awt.*;
 import javax.swing.JOptionPane;
+import modelo.Formulario;
+import modelo.Proponente;
 /**
  *
  * @author Mattxx
@@ -510,7 +512,8 @@ public class UI_Login extends javax.swing.JFrame {
     }//GEN-LAST:event_registerButton1ActionPerformed
 
     private void jButton9jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9jButton1ActionPerformed
-        
+        try {
+            
         /*Inicio del codigo para verificar si esta registrado en la base de datos */
 
         //Se inicia tomando los datos del userField1 y passwordField1
@@ -524,7 +527,8 @@ public class UI_Login extends javax.swing.JFrame {
         if(e.verificacion(name, password)){
         //Se le daria el paso a Proponente o Administrador, segun donde haya sido presionado el boton y la logica
         //Si se usa la misma logica para el administrador pues la implementacion es igual       
-            JOptionPane.showMessageDialog(this, "Usuario registrado, accediendo...");
+            JOptionPane.showMessageDialog(this, "Usuario registrado, continuar"); 
+            
             UI_Home homeFrame = new UI_Home();
             homeFrame.setVisible(true);
             this.dispose();
@@ -534,6 +538,10 @@ public class UI_Login extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Usuario no registrado y/o Campos Vacíos");
         }
         
+        }
+        catch(Exception e) {
+          JOptionPane.showMessageDialog(this, "Ningun Usuario Registrado");
+        }
         
     }//GEN-LAST:event_jButton9jButton1ActionPerformed
 

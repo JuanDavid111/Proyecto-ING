@@ -107,6 +107,8 @@ public class BD_Control implements Serializable {
         }
     }
 
-
+    public ArrayList<Proponente> getProponentes(){
+        return DB.getProponentes();
+    }
 
 }
