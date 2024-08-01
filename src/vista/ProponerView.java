@@ -244,11 +244,6 @@ public class ProponerView extends javax.swing.JFrame {
                 jButton2MouseExited(evt);
             }
         });
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
 
         jButton3.setBackground(new java.awt.Color(86, 81, 81));
         jButton3.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
@@ -271,6 +266,7 @@ public class ProponerView extends javax.swing.JFrame {
         Denominacion.setBackground(new java.awt.Color(86, 81, 81));
         Denominacion.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
         Denominacion.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        Denominacion.setForeground(new java.awt.Color(255,255,255));
         Denominacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DenominacionActionPerformed(evt);
@@ -497,15 +493,6 @@ public class ProponerView extends javax.swing.JFrame {
     private void DenominacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DenominacionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_DenominacionActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(evt.getSource() == jButton2){
-        Denominacion.setText(""); Objetivos.setText(""); Fundamentacion.setText(""); Perfil.setText(""); Perfil_Docente.setText(""); Estructura_Curricular.setText(""); Estrategia_Evaluacion.setText(""); Exigencias.setText(""); Duracion.setText(""); Estructura_Costo.setText(""); Cronograma.setText("");
-            UI_Home homeFrame = new UI_Home();
-            homeFrame.setVisible(true);
-            this.dispose();
-        }        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     
     private void link(){

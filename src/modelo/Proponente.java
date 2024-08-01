@@ -40,7 +40,8 @@ public class Proponente extends Usuario
     public ArrayList<Curso> getCursos() {
         return Cursos;
     }
-    
+
+
     @Override
     public void mostrar() {
         
@@ -54,4 +55,6 @@ public class Proponente extends Usuario
     public String getCedula(){
         return CI;
     }
+
+
 }
