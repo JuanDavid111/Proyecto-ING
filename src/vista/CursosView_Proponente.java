@@ -5,8 +5,13 @@
 package vista;
 
 import controlador.BD_Control;
+import controlador.*;
 import controlador.Proponente_Control;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
 import modelo.Curso;
 import modelo.Proponente;
@@ -102,14 +107,14 @@ public class CursosView_Proponente extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre del Curso", "Duración", "Estado Aprobación"
+                "Indice", "Nombre del Curso", "Duración", "Estado Aprobación"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                true, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -226,25 +231,55 @@ public class CursosView_Proponente extends javax.swing.JFrame {
                 return false;
             }
         }; 
+        dt.addColumn("Indice");
         dt.addColumn("Nombre del Curso");
         dt.addColumn("Duración");
         dt.addColumn("Estado Aprobación");
         
         
-            
+        int c = 1;
         ArrayList<Curso> Cursos = Proponente.getProponente().getCursos();
         if(!Cursos.isEmpty()){
             for(Curso curso : Cursos){
-                Object p[] = new Object[3];
-                p[0]=curso.getFormulario().getDenominacion();
-                p[1]=curso.getFormulario().getDuracion();
-                p[2]=curso.getEstado();
+                Object p[] = new Object[4];
+                p[0]=c;
+                p[1]=curso.getFormulario().getDenominacion();
+                p[2]=curso.getFormulario().getDuracion();
+                p[3]=curso.getEstado();
                 dt.addRow(p);
+                c++;
             } 
+            
         }
               
         jTable1.setModel(dt);
+        JPopupMenu pop = new JPopupMenu();
+        JMenuItem menu = new JMenuItem("Ver Curso Detallado");
+        pop.add(menu);
+        jTable1.setComponentPopupMenu(pop);
         
+        menu.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(jTable1.getSelectedRow()>=0){
+                DefaultTableModel modelo= (DefaultTableModel)jTable1.getModel();
+                String nombreCurso= modelo.getValueAt(jTable1.getSelectedRow(), 1).toString();
+                
+                ArrayList<Curso> Cursos = Proponente.getProponente().getCursos();
+                for(Curso curso : Cursos){ 
+                    if(curso.getFormulario().getDenominacion().equals(nombreCurso)){
+                        
+                    Curso_Control c1 = Curso_Control.getinstancia(); c1.setCurso(curso);
+                    CursoDetalladoProponenteView frame = new CursoDetalladoProponenteView();
+                    frame.setVisible(true);
+
+                    }
+                    
+                }    
+                }
+            }
+            }
+        );
     } 
     
     /**

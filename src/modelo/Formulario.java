@@ -71,5 +71,33 @@ public class Formulario implements Serializable{
     public String getDuracion(){
         return Duracion;
     }
+    
+    public String getEstructura_Costo() {
+        return Estructura_Costo;
+    }
+    public String getCronograma_De_Ejecucion() {
+        return Cronograma_De_Ejecucion;
+    }
+    public String getObjetivos() {
+        return Objetivos;
+    }
+    public String getFundamentacion() {
+        return Fundamentacion;
+    }
+    public String getPerfiles_I_E() {
+        return Perfiles_I_E;
+    }
+    public String getPerfil_Docente() {
+        return Perfil_Docente;
+    }
+    public String getEstructura_Curricular() {
+        return Estructura_Curricular;
+    }
+    public String getEstrategias_Evaluacion() {
+        return Estrategias_Evaluacion;
+    }
+    public String getExigencias_y_Servicios() {
+        return Exigencias_y_Servicios;
+    }
 
 }

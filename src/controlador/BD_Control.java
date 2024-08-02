@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import modelo.Administrador;
 import modelo.Dato;
 import modelo.Proponente;
+import modelo.Curso;
 import java.io.Serializable;
 
 
@@ -69,6 +70,30 @@ public class BD_Control implements Serializable {
     
  
     }
+    
+    public Curso buscarCurso(int busca,String user,String password){
+        
+    ArrayList<Proponente> Proponentes = DB.getProponentes();
+    
+    for(Proponente p : Proponentes){ 
+        if(user.equals(p.getUser()) && password.equals(p.getPassword())){
+            ArrayList<Curso> cc = p.getCursos();
+            for(Curso c1 : cc){
+    
+                if(busca == c1.getIndice()){
+                return c1;
+
+                }
+       
+            }
+        }
+            
+            
+    }
+
+    return null;
+    }
+    
     public Administrador buscarAdmin(String user,String password){
 
         ArrayList<Administrador> Administradores=DB.getAdministradores();

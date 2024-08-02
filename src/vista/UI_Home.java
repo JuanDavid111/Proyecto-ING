@@ -215,10 +215,10 @@ public class UI_Home extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(303, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
 
@@ -250,6 +250,7 @@ public class UI_Home extends javax.swing.JFrame {
 
         generarcarta.setBackground(new java.awt.Color(217, 217, 217));
         generarcarta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/Img/Folder-1.png"))); // NOI18N
+        generarcarta.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         generarcarta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 generarcartaActionPerformed(evt);
@@ -282,8 +283,8 @@ public class UI_Home extends javax.swing.JFrame {
                     .addComponent(carta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(generarcarta, javax.swing.GroupLayout.PREFERRED_SIZE, 291, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(generarcarta, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -359,7 +360,7 @@ public class UI_Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton12jButton1ActionPerformed
 
     private void jButton11jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11jButton1ActionPerformed
-        ProponerView frameProponer = new ProponerView();
+        FormularioView frameProponer = new FormularioView();
         frameProponer.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton11jButton1ActionPerformed
@@ -382,11 +383,18 @@ public class UI_Home extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
     String algo = carta.getText();
-    if(evt.getSource() == jButton3 ){
-    carta.setVisible(false);
-    carta.setText("");
-    generarcarta.setSelected(false);
-    }    // TODO add your handling code here:
+        if(evt.getSource() == jButton3 ){
+            
+            
+            if(!"".equals(carta.getText())) {
+                generarcarta.setSelected(false); carta.setVisible(false);
+                JOptionPane.showMessageDialog(this, "Carta Enviada Exitosamente!");
+            } else {
+                JOptionPane.showMessageDialog(this, "No se puede enviar un link vacío");
+                
+            }
+            
+        }    // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void generarcartaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarcartaActionPerformed
@@ -398,8 +406,6 @@ public class UI_Home extends javax.swing.JFrame {
         link();
     }          // TODO add your handling code here:
     }//GEN-LAST:event_generarcartaActionPerformed
-
-    //esta funcion se va a encargar de mostrar los datos de proponente registrado
 
     private void mostrarDatos() {
         Proponente_Control session = Proponente_Control.getinstancia();
@@ -431,7 +437,7 @@ public class UI_Home extends javax.swing.JFrame {
             }
             
             else {
-                System.out.println("No se puede");
+                System.out.println("EXCEPCION: No se puede conectar a la base de datos");
                 System.exit(0);
             }
                 

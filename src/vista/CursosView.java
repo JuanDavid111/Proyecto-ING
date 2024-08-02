@@ -13,7 +13,8 @@ import javax.swing.JMenuItem;
 import javax.swing.table.DefaultTableModel;
 import modelo.Curso;
 import modelo.Proponente;
-
+import vista.CursoDetalladoView;
+import controlador.*;
 /**
  *
  * @author Mattxx
@@ -156,14 +157,14 @@ public class CursosView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre del Curso", "Duración", "Proponente", "Estado Aprobación"
+                "Indice", "Nombre del Curso", "Duración", "Proponente", "Estado Aprobación"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -200,9 +201,9 @@ public class CursosView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(39, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
+                .addGap(49, 49, 49))
         );
 
         jButton9.setBackground(new java.awt.Color(86, 81, 81));
@@ -270,45 +271,55 @@ public class CursosView extends javax.swing.JFrame {
             public boolean isCellEditable(int row,int col) {
                 return false;
             }
-        }; 
+        };
+        dt.addColumn("Indice");
         dt.addColumn("Nombre del Curso");
         dt.addColumn("Duración");
         dt.addColumn("Proponente");
         dt.addColumn("Estado Aprobación");
+        int c = 1;
         
         for (Proponente Proponente : Proponentes) {
             
             ArrayList<Curso> Cursos = Proponente.getCursos();
             if(!Cursos.isEmpty()){
                 for(Curso curso : Cursos){
-                    Object p[] = new Object[4];
-                    p[0]=curso.getFormulario().getDenominacion();
-                    p[1]=curso.getFormulario().getDuracion();
-                    p[2]=Proponente.getNombre();
-                    p[3]=curso.getEstado();
+                    Object p[] = new Object[5];
+                    p[0]= c;
+                    p[1]=curso.getFormulario().getDenominacion();
+                    p[2]=curso.getFormulario().getDuracion();
+                    p[3]=Proponente.getNombre();
+                    p[4]=curso.getEstado();
                     dt.addRow(p);
+                    curso.setIndice(c);
+                    c++;
+                    System.out.println(c);
                 } 
+                c = 1;
             } 
         }
         jTable1.setModel(dt);
-        
+       
         JPopupMenu pop = new JPopupMenu();
         JMenuItem menu1 = new JMenuItem("Aprobar Propuesta Curso");
         JMenuItem menu2 = new JMenuItem("Poner curso en espera");
         JMenuItem menu3 = new JMenuItem("Rechazar Propuesta Curso");
+        JMenuItem menu4 = new JMenuItem("Ver Curso Detallado");
         pop.add(menu1);
         pop.add(menu2);
         pop.add(menu3);
+        pop.add(menu4);
         jTable1.setComponentPopupMenu(pop);
+        CursosView thisframe = this;
         menu1.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
                 DefaultTableModel modelo= (DefaultTableModel)jTable1.getModel();
                 Object p = "Aprobado";
-                modelo.setValueAt(p,jTable1.getSelectedRow(), 3);
+                modelo.setValueAt(p,jTable1.getSelectedRow(), 4);
                 jTable1.setModel(modelo);
-                String nombreCurso= modelo.getValueAt(jTable1.getSelectedRow(), 0).toString();
-                String nombre= modelo.getValueAt(jTable1.getSelectedRow(), 2).toString();
+                String nombreCurso= modelo.getValueAt(jTable1.getSelectedRow(), 1).toString();
+                String nombre= modelo.getValueAt(jTable1.getSelectedRow(), 3).toString();
                 for (Proponente Proponente : Proponentes) {
                     ArrayList<Curso> Cursos = Proponente.getCursos();
                     for(Curso curso : Cursos){
@@ -329,10 +340,10 @@ public class CursosView extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 DefaultTableModel modelo= (DefaultTableModel)jTable1.getModel();
                 Object p = "En Espera";
-                modelo.setValueAt(p,jTable1.getSelectedRow(), 3);
+                modelo.setValueAt(p,jTable1.getSelectedRow(), 4);
                 jTable1.setModel(modelo);
-                String nombreCurso= modelo.getValueAt(jTable1.getSelectedRow(), 0).toString();
-                String nombre= modelo.getValueAt(jTable1.getSelectedRow(), 2).toString();
+                String nombreCurso= modelo.getValueAt(jTable1.getSelectedRow(), 1).toString();
+                String nombre= modelo.getValueAt(jTable1.getSelectedRow(), 3).toString();
                 for (Proponente Proponente : Proponentes) {
                     ArrayList<Curso> Cursos = Proponente.getCursos();
                     for(Curso curso : Cursos){
@@ -353,10 +364,10 @@ public class CursosView extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 DefaultTableModel modelo= (DefaultTableModel)jTable1.getModel();
                 Object p = "Rechazado";
-                modelo.setValueAt(p,jTable1.getSelectedRow(), 3);
+                modelo.setValueAt(p,jTable1.getSelectedRow(), 4);
                 jTable1.setModel(modelo);
-                String nombreCurso= modelo.getValueAt(jTable1.getSelectedRow(), 0).toString();
-                String nombre= modelo.getValueAt(jTable1.getSelectedRow(), 2).toString();
+                String nombreCurso= modelo.getValueAt(jTable1.getSelectedRow(), 1).toString();
+                String nombre= modelo.getValueAt(jTable1.getSelectedRow(), 3).toString();
                 for (Proponente Proponente : Proponentes) {
                     ArrayList<Curso> Cursos = Proponente.getCursos();
                     for(Curso curso : Cursos){
@@ -371,6 +382,40 @@ public class CursosView extends javax.swing.JFrame {
             
             }
         );
+        
+        menu4.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DefaultTableModel modelo= (DefaultTableModel)jTable1.getModel();
+                if(jTable1.getSelectedRow()>=0){
+                    String nombreCurso= modelo.getValueAt(jTable1.getSelectedRow(), 1).toString();
+                String nombre= modelo.getValueAt(jTable1.getSelectedRow(), 3).toString();
+                String c = modelo.getValueAt(jTable1.getSelectedRow(), 0).toString();
+                System.out.println(c);
+                int indiceC = Integer.parseInt(c);
+                System.out.println(indiceC);
+                for (Proponente Proponente : Proponentes) {
+                    ArrayList<Curso> Cursos = Proponente.getCursos();
+                    for(Curso curso : Cursos){
+                        if( Proponente.getNombre().equals(nombre) && curso.getFormulario().getDenominacion().equals(nombreCurso)){
+                        Proponente_Control P1 = Proponente_Control.getinstancia();
+                        P1.setProponente(Proponente);
+                        Curso_Control c1 = Curso_Control.getinstancia();
+                        c1.CursoSelect(indiceC,Proponente.getNombre(),Proponente.getPassword());
+                        CursoDetalladoView frame = new CursoDetalladoView();
+                        frame.setVisible(true);
+                        thisframe.dispose();
+                        }
+                    }
+                    
+                }
+                }
+                
+            }
+            
+            }
+        );
+        
     } 
     
      

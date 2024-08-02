@@ -29,12 +29,9 @@ public class Proponente_Control {
     public boolean verificacion(String user,String password){
         
         BD_Control c=BD_Control.getinstancia();
+        
         P1 = c.buscarP(user, password);
-           if(P1 == null){
-           return false;    
-           }
-           
-           return true;
+           return P1 != null;
     }
 
 
@@ -65,6 +62,11 @@ public class Proponente_Control {
         return P1;
     }
     
+    public void setProponente(Proponente P1){
+    
+        this.P1 = P1;
+        
+    }
 
 
 }

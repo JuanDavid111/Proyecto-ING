@@ -15,12 +15,12 @@ import modelo.Formulario;
  *
  * @author emili
  */
-public class ProponerView extends javax.swing.JFrame {
+public class FormularioView extends javax.swing.JFrame {
 
     /**
      * Creates new form ProponerView
      */
-    public ProponerView() {
+    public FormularioView() {
         initComponents();
         this.setSize(1280,720);
         this.setLocationRelativeTo(null);
@@ -244,6 +244,11 @@ public class ProponerView extends javax.swing.JFrame {
                 jButton2MouseExited(evt);
             }
         });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(86, 81, 81));
         jButton3.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
@@ -265,8 +270,8 @@ public class ProponerView extends javax.swing.JFrame {
 
         Denominacion.setBackground(new java.awt.Color(86, 81, 81));
         Denominacion.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
+        Denominacion.setForeground(new java.awt.Color(255, 255, 255));
         Denominacion.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        Denominacion.setForeground(new java.awt.Color(255,255,255));
         Denominacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DenominacionActionPerformed(evt);
@@ -494,6 +499,15 @@ public class ProponerView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_DenominacionActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if(evt.getSource() == jButton2){
+        Denominacion.setText(""); Objetivos.setText(""); Fundamentacion.setText(""); Perfil.setText(""); Perfil_Docente.setText(""); Estructura_Curricular.setText(""); Estrategia_Evaluacion.setText(""); Exigencias.setText(""); Duracion.setText(""); Estructura_Costo.setText(""); Cronograma.setText("");
+            UI_Home homeFrame = new UI_Home();
+            homeFrame.setVisible(true);
+            this.dispose();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     
     private void link(){
 
@@ -540,20 +554,23 @@ public class ProponerView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ProponerView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormularioView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ProponerView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormularioView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ProponerView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormularioView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ProponerView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormularioView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ProponerView().setVisible(true);
+                new FormularioView().setVisible(true);
             }
         });
     }

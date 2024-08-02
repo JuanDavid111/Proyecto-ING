@@ -13,8 +13,8 @@ public class Proponente extends Usuario
     private String RIF;
     private String ISLR;
     private String CV;
-    private String Título_Universitario;
-    private String Registro_Mercantil=null;    //revisar
+    private String Titulo_Universitario;
+    private String Registro_Mercantil= null;    //revisar
     private ArrayList<Curso> Cursos = new ArrayList<Curso>();
 
 
@@ -26,7 +26,7 @@ public class Proponente extends Usuario
         this.RIF=RIF;
         this.ISLR=ISLR;
         this.CV=CV;
-        this.Título_Universitario=Título_Universitario;
+        this.Titulo_Universitario=Título_Universitario;
         this.Registro_Mercantil=Registro_Mercantil;
 
     }
@@ -40,8 +40,7 @@ public class Proponente extends Usuario
     public ArrayList<Curso> getCursos() {
         return Cursos;
     }
-
-
+    
     @Override
     public void mostrar() {
         
@@ -55,6 +54,8 @@ public class Proponente extends Usuario
     public String getCedula(){
         return CI;
     }
-
-
+    public String getTitulo(){
+        return Titulo_Universitario;
+    }
+    
 }
